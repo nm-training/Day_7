@@ -24,7 +24,7 @@ load(url("https://bit.ly/3GFedAS"))
 |-------------------|-----------------------|
 | inner_join()  | Retains common cases from **both** data sets |
 | left_join()  | Retains all cases in **left** data set |
-| right_join()  Retains all cases in **right** data set |
+| right_join() | Retains all cases in **right** data set |
 | full_join() | Retains all cases in **either** data set |
 
 ## Filtering
