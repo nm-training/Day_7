@@ -21,7 +21,7 @@ load(url("https://bit.ly/3GFedAS"))
 ## Mutating
 
 | Function | Description |
-|-------------------|-----------------------|------------------------------|
+|-------------------|-----------------------|
 | inner_join()  | Retains common cases from **both** data sets |
 | left_join()  | Retains all cases in **left** data set |
 | right_join()  Retains all cases in **right** data set |
@@ -30,7 +30,7 @@ load(url("https://bit.ly/3GFedAS"))
 ## Filtering
 
 | Function | Description |
-|-------------------|-----------------------|------------------------------|
+|-------------------|-----------------------|
 | semi_join() | Extracts cases that **have a match** |
 | anti_join() | Extracts cases that **don't have a match** |
 
@@ -49,6 +49,7 @@ join_function(x = , y = , by = )
 ### Data
 
 ```{r}
+
 dx
 ```
 
@@ -57,6 +58,7 @@ dy
 ```
 
 ```{r}
+
 inner_join(dx, dy, by = "id")
 ```
 
@@ -67,6 +69,7 @@ inner_join(dx, dy, by = "id")
 ### Data
 
 ```{r}
+
 dx
 ```
 
@@ -75,6 +78,7 @@ dy
 ```
 
 ```{r}
+
 inner_join(dx, dy, by = "id")
 ```
 
@@ -87,10 +91,12 @@ inner_join(dx, dy, by = "id")
 ### Data
 
 ```{r}
+
 dx
 ```
 
 ```{r}
+
 dy
 ```
 
@@ -115,6 +121,7 @@ dy
 ```
 
 ```{r}
+
 inner_join(dx, dy, by = "id")
 ```
 
@@ -127,14 +134,17 @@ inner_join(dx, dy, by = "id")
 ### Data
 
 ```{r}
+
 dx
 ```
 
 ```{r}
+
 dy
 ```
 
 ```{r}
+
 inner_join(dx, dy, by = "id")
 ```
 
@@ -145,14 +155,17 @@ inner_join(dx, dy, by = "id")
 ### Data
 
 ```{r}
+
 dx
 ```
 
 ```{r}
+
 dy
 ```
 
 ```{r}
+
 anti_join(dx, dy, by = "id")
 ```
 
@@ -161,10 +174,12 @@ anti_join(dx, dy, by = "id")
 - Join `our_data` and `data2` by `SUBJECT`
 
 ```{r}
+
 left_join(...., ...., by = "....")
 ```
 
 ```{r}
+
 inner_join(..., ...., by = "....")
 ```
 
@@ -335,6 +350,7 @@ sex
 ## Type
 
 ```{r}
+
 class(sex)
 ```
 
@@ -389,6 +405,7 @@ sex[3]
 ### Modify
 
 ```{r}
+
 sex[4]
 ```
 
@@ -405,6 +422,7 @@ sex[4]
 ### Length
 
 ```{r}
+
 length(sex)
 ```
 
