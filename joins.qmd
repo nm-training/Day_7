@@ -60,6 +60,7 @@ dy
 ```{r}
 
 inner_join(dx, dy, by = "id")
+
 ```
 
 ## Left Join
@@ -80,6 +81,7 @@ dy
 ```{r}
 
 inner_join(dx, dy, by = "id")
+
 ```
 
 
