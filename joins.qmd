@@ -1,0 +1,445 @@
+---
+title: "Joins"
+author: "R Trainer: Binod Jung Bogati (linkedin.com/in/bjungbogati)"
+copyright: "© 2025. Unauthorized distribution or reuse prohibited."
+format: html
+editor: visual
+---
+
+# Joins
+
+## Load
+
+```{r}
+library(tidyverse)
+
+load(url("https://bit.ly/3GFedAS"))
+```
+
+## Joins
+
+## Mutating
+
+| Function | Description |
+|-------------------|-----------------------|------------------------------|
+| inner_join()  | Retains common cases from **both** data sets |
+| left_join()  | Retains all cases in **left** data set |
+| right_join()  Retains all cases in **right** data set |
+| full_join() | Retains all cases in **either** data set |
+
+## Filtering
+
+| Function | Description |
+|-------------------|-----------------------|------------------------------|
+| semi_join() | Extracts cases that **have a match** |
+| anti_join() | Extracts cases that **don't have a match** |
+
+## Joining Data
+
+### Syntax
+
+``` r
+join_function(x = , y = , by = )
+```
+
+## Inner Join
+
+-   Retains common cases from both data sets.
+
+### Data
+
+```{r}
+dx
+```
+
+```{r}
+dy
+```
+
+```{r}
+inner_join(dx, dy, by = "id")
+```
+
+## Left Join
+
+-   Retains all cases in left data set.
+
+### Data
+
+```{r}
+dx
+```
+
+```{r}
+dy
+```
+
+```{r}
+inner_join(dx, dy, by = "id")
+```
+
+
+
+## Right Join
+
+-   Retains all cases in right data set.
+
+### Data
+
+```{r}
+dx
+```
+
+```{r}
+dy
+```
+
+```{r}
+inner_join(dx, dy, by = "id")
+```
+
+
+
+## Full Join
+
+-   Retains all cases in either data set.
+
+### Data
+
+```{r}
+dx
+```
+
+```{r}
+dy
+```
+
+```{r}
+inner_join(dx, dy, by = "id")
+```
+
+
+
+## Semi Join
+
+-   Extracts cases that have a match
+
+### Data
+
+```{r}
+dx
+```
+
+```{r}
+dy
+```
+
+```{r}
+inner_join(dx, dy, by = "id")
+```
+
+## Anti Join
+
+-   Extracts cases that don't have a match
+
+### Data
+
+```{r}
+dx
+```
+
+```{r}
+dy
+```
+
+```{r}
+anti_join(dx, dy, by = "id")
+```
+
+## Your Turn 01
+
+- Join `our_data` and `data2` by `SUBJECT`
+
+```{r}
+left_join(...., ...., by = "....")
+```
+
+```{r}
+inner_join(..., ...., by = "....")
+```
+
+
+# Tidy Data
+
+## Transpose
+
+### Functions
+
+| Function       | Description       |
+|----------------|-------------------|
+| pivot_wider()  | Widen the columns |
+| pivot_longer() | Lengthen the rows |
+
+### Longer
+
+```{.r}
+
+pivot_longer(data,
+  cols = "columns",
+  names_to = "name",
+  values_to = "value"
+)
+```
+
+## Your Turn 02
+
+Pivot `our_data2` into longer format
+- Columns to be pivot: `SYSBP, DIABP, HEIGHT, WEIGHT, BMI`
+- Column name for category: `VSTESTCD`
+- Column name for value: `VSORRES`
+- Select only `SUBJECT, VSTESTCD, VSORRES`
+
+```{r}
+
+vs_long <- our_data2 |> 
+      pivot_longer(
+        cols = c(...), # Column name to be pivot
+        names_to = "...", # Column name for category
+        values_to = "..."  # Column name for value
+      ) |> 
+  select(....)             # select columns
+
+vs_long
+
+```
+
+
+### Wider
+
+```{r}
+
+pivot_wider(data,
+  names_from = name,
+  values_from = value
+)
+```
+
+## Your Turn 03
+
+Pivot `vs_long` into wider format
+- Column name of category: `VSTESTCD`
+- Column name for value: `VSORRES`
+
+```{r}
+
+vs_long |> 
+      pivot_wider(
+       names_from = "....",   # column name of category 
+       values_from = "...."   # column name of value 
+      )
+
+
+```
+
+## Other Functions
+
+| Functions | Description |
+|------------------------------------|------------------------------------|
+| unite() | Combines two or more columns into a single column.. |
+| separate() | Divides a single column into multiple columns based on a separator. |
+
+## Unite
+
+## Syntax
+
+```{.r}
+unite(
+  data, 
+  col, 
+  ..., 
+  sep = "_", 
+  remove = TRUE, 
+  na.rm = FALSE
+  )
+```
+
+## Your Turn 04
+
+- Create a new column: USUBJID by combining two columns: `STUDYID, SUBJECT`
+which are seperated by `-`.
+
+```{r}
+our_data <- our_data |> 
+  unite(
+        col = "....", # new column to be created
+        ...  ,          # two cols to be combined
+        sep = " "     # add seperator
+        )
+
+our_data
+```
+
+### Syntax
+
+```{.r}
+separate(
+  data,
+  col,
+  into,
+  sep = "[^[:alnum:]]+",  
+  remove = TRUE
+)
+```
+
+## Your Turn 05
+
+- Separate the `USUBJID` column into `STUDYID, SUBJECT` separated by `-`
+- Set `remove = FALSE`
+
+```{r}
+our_data |> 
+  separate(
+           col = ..., 
+           into = c(... , ....), 
+           sep = "...", 
+           remove = ...
+           )
+```
+
+# Factors
+
+## What are Factors?
+
+- Special data structure for categorical data with fixed possible values (levels)
+
+Two types:
+
+- Ordinal: Ordered levels (e.g., "Low" < "Medium" < "High")
+- Nominal: Unordered categories (e.g., "Red", "Blue", "Green")
+
+## Why use Factors?
+
+- Efficient storage of repeated categories
+- Required for statistical modeling (e.g., ANOVA, regression) and graphs
+- Enforce data validation (only predefined levels allowed)
+
+
+### Create
+
+```{r}
+sex <- factor(c("Male", "Female", "Female", "Male"))
+
+sex
+```
+
+## Type
+
+```{r}
+class(sex)
+```
+
+
+### Levels
+
+- Default Order (Alphabet)
+
+```{r}
+levels(sex)
+```
+
+```{r}
+levels(sex) <- c("Male", "Female")
+levels(sex)
+```
+
+## Labels
+
+```{r}
+val <- c("Male", "Female", "Female", "Male")
+sex_label <- factor(val, labels = c("F", "M"))
+sex_label
+```
+
+
+## Your Turn 06
+
+- Create a factor `severity` with following values:
+`"MODERATE", "MILD", "MILD", "SEVERE"`
+
+- Check class and levels of `severity` as well
+
+
+```{r}
+
+
+
+```
+
+## Operations
+
+
+
+### Access
+
+```{r}
+sex[1]
+
+sex[3]
+```
+### Modify
+
+```{r}
+sex[4]
+```
+
+```{r}
+sex[4] <- "Female"
+sex[4]
+```
+
+```{r}
+sex[4] <- "Anything"
+sex[4]
+```
+
+### Length
+
+```{r}
+length(sex)
+```
+
+## Type Conversion
+
+```{r}
+levels(sex)
+
+sex_num <- as.numeric(sex)
+sex_num
+
+class(sex_num)
+```
+
+```{r}
+sex_factor <- factor(sex_num, labels = c("M", "F"))
+sex_factor
+
+class(sex_factor)
+```
+
+```{r}
+sex_char <- as.character(sex_factor)
+sex_char
+
+class(sex_char)
+```
+
+```{r}
+sex_factor <- as.factor(sex_char)
+
+class(sex_factor)
+```
+
+
+
+
+
