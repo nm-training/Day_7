@@ -20,18 +20,18 @@ load(url("https://bit.ly/3GFedAS"))
 
 ## Mutating
 
-| Function | Description |
-|-------------------|-----------------------|
-| inner_join()  | Retains common cases from **both** data sets |
-| left_join()  | Retains all cases in **left** data set |
-| right_join() | Retains all cases in **right** data set |
-| full_join() | Retains all cases in **either** data set |
+| Function     | Description                                  |
+|--------------|----------------------------------------------|
+| inner_join() | Retains common cases from **both** data sets |
+| left_join()  | Retains all cases in **left** data set       |
+| right_join() | Retains all cases in **right** data set      |
+| full_join()  | Retains all cases in **either** data set     |
 
 ## Filtering
 
-| Function | Description |
-|-------------------|-----------------------|
-| semi_join() | Extracts cases that **have a match** |
+| Function    | Description                                |
+|-------------|--------------------------------------------|
+| semi_join() | Extracts cases that **have a match**       |
 | anti_join() | Extracts cases that **don't have a match** |
 
 ## Joining Data
@@ -46,16 +46,6 @@ join_function(x = , y = , by = )
 
 -   Retains common cases from both data sets.
 
-### Data
-
-```{r}
-
-dx
-```
-
-```{r}
-dy
-```
 
 ```{r}
 
@@ -67,24 +57,12 @@ inner_join(dx, dy, by = "id")
 
 -   Retains all cases in left data set.
 
-### Data
 
 ```{r}
 
-dx
-```
-
-```{r}
-dy
-```
-
-```{r}
-
-inner_join(dx, dy, by = "id")
+left_join(dx, dy, by = "id")
 
 ```
-
-
 
 ## Right Join
 
@@ -92,21 +70,10 @@ inner_join(dx, dy, by = "id")
 
 ### Data
 
-```{r}
-
-dx
-```
 
 ```{r}
-
-dy
+right_join(dx, dy, by = "id")
 ```
-
-```{r}
-inner_join(dx, dy, by = "id")
-```
-
-
 
 ## Full Join
 
@@ -115,19 +82,9 @@ inner_join(dx, dy, by = "id")
 ### Data
 
 ```{r}
-dx
-```
-
-```{r}
-dy
-```
-
-```{r}
 
 inner_join(dx, dy, by = "id")
 ```
-
-
 
 ## Semi Join
 
@@ -137,17 +94,7 @@ inner_join(dx, dy, by = "id")
 
 ```{r}
 
-dx
-```
-
-```{r}
-
-dy
-```
-
-```{r}
-
-inner_join(dx, dy, by = "id")
+semi_join(dx, dy, by = "id")
 ```
 
 ## Anti Join
@@ -158,22 +105,12 @@ inner_join(dx, dy, by = "id")
 
 ```{r}
 
-dx
-```
-
-```{r}
-
-dy
-```
-
-```{r}
-
 anti_join(dx, dy, by = "id")
 ```
 
 ## Your Turn 01
 
-- Join `our_data` and `data2` by `SUBJECT`
+-   Join `our_data` and `data2` by `SUBJECT`
 
 ```{r}
 
@@ -184,7 +121,6 @@ left_join(...., ...., by = "....")
 
 inner_join(..., ...., by = "....")
 ```
-
 
 # Tidy Data
 
@@ -199,7 +135,7 @@ inner_join(..., ...., by = "....")
 
 ### Longer
 
-```{.r}
+``` r
 
 pivot_longer(data,
   cols = "columns",
@@ -210,11 +146,7 @@ pivot_longer(data,
 
 ## Your Turn 02
 
-Pivot `our_data2` into longer format
-- Columns to be pivot: `SYSBP, DIABP, HEIGHT, WEIGHT, BMI`
-- Column name for category: `VSTESTCD`
-- Column name for value: `VSORRES`
-- Select only `SUBJECT, VSTESTCD, VSORRES`
+Pivot `our_data2` into longer format - Columns to be pivot: `SYSBP, DIABP, HEIGHT, WEIGHT, BMI` - Column name for category: `VSTESTCD` - Column name for value: `VSORRES` - Select only `SUBJECT, VSTESTCD, VSORRES`
 
 ```{r}
 
@@ -230,7 +162,6 @@ vs_long
 
 ```
 
-
 ### Wider
 
 ```{r}
@@ -243,9 +174,7 @@ pivot_wider(data,
 
 ## Your Turn 03
 
-Pivot `vs_long` into wider format
-- Column name of category: `VSTESTCD`
-- Column name for value: `VSORRES`
+Pivot `vs_long` into wider format - Column name of category: `VSTESTCD` - Column name for value: `VSORRES`
 
 ```{r}
 
@@ -269,7 +198,7 @@ vs_long |>
 
 ## Syntax
 
-```{.r}
+``` r
 unite(
   data, 
   col, 
@@ -282,8 +211,7 @@ unite(
 
 ## Your Turn 04
 
-- Create a new column: USUBJID by combining two columns: `STUDYID, SUBJECT`
-which are seperated by `-`.
+-   Create a new column: USUBJID by combining two columns: `STUDYID, SUBJECT` which are seperated by `-`.
 
 ```{r}
 our_data <- our_data |> 
@@ -298,7 +226,7 @@ our_data
 
 ### Syntax
 
-```{.r}
+``` r
 separate(
   data,
   col,
@@ -310,8 +238,8 @@ separate(
 
 ## Your Turn 05
 
-- Separate the `USUBJID` column into `STUDYID, SUBJECT` separated by `-`
-- Set `remove = FALSE`
+-   Separate the `USUBJID` column into `STUDYID, SUBJECT` separated by `-`
+-   Set `remove = FALSE`
 
 ```{r}
 our_data |> 
@@ -327,19 +255,18 @@ our_data |>
 
 ## What are Factors?
 
-- Special data structure for categorical data with fixed possible values (levels)
+-   Special data structure for categorical data with fixed possible values (levels)
 
 Two types:
 
-- Ordinal: Ordered levels (e.g., "Low" < "Medium" < "High")
-- Nominal: Unordered categories (e.g., "Red", "Blue", "Green")
+-   Ordinal: Ordered levels (e.g., "Low" \< "Medium" \< "High")
+-   Nominal: Unordered categories (e.g., "Red", "Blue", "Green")
 
 ## Why use Factors?
 
-- Efficient storage of repeated categories
-- Required for statistical modeling (e.g., ANOVA, regression) and graphs
-- Enforce data validation (only predefined levels allowed)
-
+-   Efficient storage of repeated categories
+-   Required for statistical modeling (e.g., ANOVA, regression) and graphs
+-   Enforce data validation (only predefined levels allowed)
 
 ### Create
 
@@ -356,10 +283,9 @@ sex
 class(sex)
 ```
 
-
 ### Levels
 
-- Default Order (Alphabet)
+-   Default Order (Alphabet)
 
 ```{r}
 levels(sex)
@@ -378,14 +304,11 @@ sex_label <- factor(val, labels = c("F", "M"))
 sex_label
 ```
 
-
 ## Your Turn 06
 
-- Create a factor `severity` with following values:
-`"MODERATE", "MILD", "MILD", "SEVERE"`
+-   Create a factor `severity` with following values: `"MODERATE", "MILD", "MILD", "SEVERE"`
 
-- Check class and levels of `severity` as well
-
+-   Check class and levels of `severity` as well
 
 ```{r}
 
@@ -395,8 +318,6 @@ sex_label
 
 ## Operations
 
-
-
 ### Access
 
 ```{r}
@@ -404,6 +325,7 @@ sex[1]
 
 sex[3]
 ```
+
 ### Modify
 
 ```{r}
@@ -458,8 +380,3 @@ sex_factor <- as.factor(sex_char)
 
 class(sex_factor)
 ```
-
-
-
-
-
